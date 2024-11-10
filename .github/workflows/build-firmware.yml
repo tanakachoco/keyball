@@ -34,7 +34,7 @@ jobs:
       uses: ./.github/actions/checkout-qmk_firmware
 
     - name: Install Python dependencies
-      run: |
+      run: \
         python3 -m pip install --upgrade pip
 	python3 -m pip install appdirs
 
