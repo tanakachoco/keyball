@@ -49,7 +49,7 @@ void process_swipe_gesture(int16_t x, int16_t y) {
 
     // 次のモニターへ移動
     if (my_abs(x) > my_abs(y)) {
-      register_code(KC_LCTL);
+      register_code(KC_LCTRL);
 
       if (x < 0) {
         // swipe left:
@@ -60,13 +60,13 @@ void process_swipe_gesture(int16_t x, int16_t y) {
       }
     }
     unregister_code(KC_LCMD);
-    unregister_code(KC_LCTL);
+    unregister_code(KC_LCTRL);
 
     register_code(KC_LALT);
   }
 
   // shift
-  if (current_keycode == SFT_T(KC_LNG2)) {
+  if (current_keycode == SFT_T(KC_LANG2)) {
     unregister_code(KC_LALT);
     register_code(KC_LCMD);
 
@@ -84,10 +84,10 @@ void process_swipe_gesture(int16_t x, int16_t y) {
     if (my_abs(x) > my_abs(y)) {
       if (x < 0) {
         // swipe left: 戻る
-        tap_code(KC_LBRC);
+        tap_code(KC_LBRACKET);
       } else {
         // swipe right: 進む
-        tap_code(KC_RBRC);
+        tap_code(KC_RBRACKET);
       }
     }
     unregister_code(KC_LCMD);
@@ -97,7 +97,7 @@ void process_swipe_gesture(int16_t x, int16_t y) {
   // CMD
   if (current_keycode == CMD_T(KC_SPACE)) {
     unregister_code(KC_LCMD);
-    register_code(KC_LCTL);
+    register_code(KC_LCTRL);
 
     // ウインドウのサイズ変更と移動（BetterTouchToolで設定）
     if (my_abs(x) < my_abs(y)) {
@@ -120,7 +120,7 @@ void process_swipe_gesture(int16_t x, int16_t y) {
       }
     }
 
-    unregister_code(KC_LCTL);
+    unregister_code(KC_LCTRL);
     register_code(KC_LCMD);
   }
 

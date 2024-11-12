@@ -106,7 +106,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           enable_click_layer();
         } else if (get_highest_layer(layer_state) == 3) {
           // キーダウン時:
-          register_code(KC_LCTL);
+          register_code(KC_LCTRL);
           is_ctrl_active = true;
           // tap_code(KC_TAB);
           enable_click_layer();
@@ -163,14 +163,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       static bool is_lt1_lang1_pressed = false;  // LT(1, KC_LANG1)の状態を追跡
 
       // 上位レイヤーから下位レイヤーへ移動できるようにする
-    case LT(1, KC_LNG2):  // レイヤー1へのキー
-    case LT(1, KC_LNG1):  // レイヤー1へのキー
+    case LT(1, KC_LANG2):  // レイヤー1へのキー
+    case LT(1, KC_LANG1):  // レイヤー1へのキー
       if (record->event.pressed) {
         click_timer = timer_read();
         is_lt1_pressed = true;
-        if (keycode == LT(1, KC_LNG2)) {
+        if (keycode == LT(1, KC_LANG2)) {
           is_lt1_lang2_pressed = true;
-        } else if (keycode == LT(1, KC_LNG1)) {
+        } else if (keycode == LT(1, KC_LANG1)) {
           is_lt1_lang1_pressed = true;
         }
         layer_on(1);  // レイヤー1をオンにする
@@ -183,9 +183,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       } else {
         is_lt1_pressed = false;
-        if (keycode == LT(1, KC_LNG2)) {
+        if (keycode == LT(1, KC_LANG2)) {
           is_lt1_lang2_pressed = false;
-        } else if (keycode == LT(1, KC_LNG1)) {
+        } else if (keycode == LT(1, KC_LANG1)) {
           is_lt1_lang1_pressed = false;
         }
         if (!is_lt1_lang2_pressed && !is_lt1_lang1_pressed) {
@@ -199,12 +199,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         if (timer_elapsed(click_timer) < TAPPING_TERM) {
           // タッピングタイム内に放された場合はタップ動作
-          if (keycode == LT(1, KC_LNG2)) {
-            tap_code(KC_LNG2);
+          if (keycode == LT(1, KC_LANG2)) {
+            tap_code(KC_LANG2);
             // is_eisuu = true;
             is_kana = false;
-          } else if (keycode == LT(1, KC_LNG1)) {
-            tap_code(KC_LNG1);
+          } else if (keycode == LT(1, KC_LANG1)) {
+            tap_code(KC_LANG1);
             is_kana = true;
           }
         }
@@ -278,7 +278,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
 
         if (is_ctrl_active) {
-          unregister_code(KC_LCTL);
+          unregister_code(KC_LCTRL);
           is_ctrl_active = false;
         }
       }
@@ -301,7 +301,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code16(G(KC_A));
           }
           if (keycode == SFT_T_S_KC_SCOLON) {
-            tap_code16(S(KC_SCLN));
+            tap_code16(S(KC_SCOLON));
           }
         }
       }
@@ -310,10 +310,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       // コンボ
     case COMBO_MINUS_SPACE:
       if (record->event.pressed) {
-        tap_code(KC_LNG2);  //
+        tap_code(KC_LANG2);  //
         tap_code(KC_MINUS);  // -　を送信
         tap_code(KC_SPACE);  //  スペース を送信
-        tap_code(KC_LNG1);  //
+        tap_code(KC_LANG1);  //
       }
       return false;
 
@@ -435,7 +435,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // 以下スワイプジェスチャー
     // クリックすると state が SWIPE になり、離したら NONE になる
     case CMD_T(KC_SPACE):
-    case SFT_T(KC_LNG2):
+    case SFT_T(KC_LANG2):
     case ALT_T(KC_F13): {
       if (record->event.pressed) {
         // キーダウン時
